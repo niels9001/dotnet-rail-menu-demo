@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Window
+<winuiex:WindowEx
     x:Class="RailMenuDemo.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:RailMenuDemo"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
+    xmlns:ui="using:CommunityToolkit.WinUI"
+    xmlns:winuiex="using:WinUIEx"
+    Width="1280"
+    MinWidth="900"
+    MinHeight="500"
     Title="RailMenuDemo">
 
     <Window.SystemBackdrop>
@@ -14,6 +15,46 @@
     </Window.SystemBackdrop>
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <!-- This is the navigation view, this is the main part of the menu, it contains the menu items and the content frame where the pages will be displayed, you can customize the menu items and the content frame to your liking -->
+        <NavigationView
+          x:Name="NavView"
+          Grid.Row="1"
+          IsBackButtonVisible="Collapsed"
+          IsPaneToggleButtonVisible="False"
+          IsSettingsVisible="False"
+          ItemInvoked="NavView_ItemInvoked"
+          Style="{StaticResource MainNavigationViewStyle}">
 
+            <NavigationView.MenuItems>
+                <NavigationViewItem Content="Home"   Icon="Home"                             Tag="Home" />
+                <NavigationViewItem Content="Browse" Icon="{ui:FontIcon Glyph=&#xE754;}"     Tag="Browse" />
+                <NavigationViewItem Content="Models" Icon="{ui:FontIcon Glyph=&#xF158;}"     Tag="Models" />
+            </NavigationView.MenuItems>
+
+            <NavigationView.FooterMenuItems>
+                <NavigationViewItem Content="Settings" Icon="Setting" Tag="Settings" />
+            </NavigationView.FooterMenuItems>
+
+            <NavigationView.Content>
+                <Frame x:Name="NavFrame"
+                      Navigated="NavFrame_Navigated" />
+            </NavigationView.Content>
+        </NavigationView>
+        <!-- This is the title bar, this is not required to build the menu, but it gives you a nice title bar with an icon, you can customize this to your liking -->
+        <TitleBar x:Name="titleBar" Grid.Row="0" Title="MyApp" Height="48"  IsTabStop="False">
+            <!--IsBackButtonVisible="{x:Bind NavFrame.CanGoBack, Mode=OneWay}"-->
+            <TitleBar.LeftHeader>
+                <Image
+            x:Name="titleBarIcon"
+            Width="16"
+            Margin="16,0,0,0"
+            AutomationProperties.AccessibilityView="Raw"
+            Source="ms-appx:///Assets/Square44x44Logo.png" />
+            </TitleBar.LeftHeader>
+        </TitleBar>
     </Grid>
-</Window>
+</winuiex:WindowEx>

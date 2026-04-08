@@ -13,6 +13,9 @@
     <EnableMsixTooling>true</EnableMsixTooling>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Styles\NavigationView.xaml" />
+  </ItemGroup>
 
   <ItemGroup>
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -37,9 +40,21 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.28000.1721" />
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.8.260317003" />
+	  <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.28000.1721" />
+	  <PackageReference Include="Microsoft.Windows.SDK.BuildTools.MSIX" Version="1.7.260316102">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
+	  <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.8.260317003" />
+	  <PackageReference Include="CommunityToolkit.WinUI.Animations" Version="8.2.251219" />
+	  <PackageReference Include="CommunityToolkit.WinUI.Extensions" Version="8.2.251219" />
+	  <PackageReference Include="WinUIEx" Version="2.9.0" />
   </ItemGroup>
+  <!--<ItemGroup>
+    <Page Update="Styles\NavigationView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>-->
 
   <!--
     Defining the "HasPackageAndPublishMenuAddedByProject" property here allows the Solution
